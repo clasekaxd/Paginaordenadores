@@ -3,14 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Constructor de PC</title>
+    <title>Constructor de PC - Diseña tu Computadora Perfecta</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <h1>Constructor de PC</h1>
-        <button id="loginButton" onclick="navigateToLogin()">Iniciar sesión</button>
+        <nav>
+            <button id="loginButton" onclick="navigateToLogin()">Iniciar sesión</button>
+            <button onclick="navigateToCatalog()">Catálogo</button>
+        </nav>
     </header>
+    
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2>Diseña tu Computadora Perfecta</h2>
+                <p>Construye la PC de tus sueños con los componentes más recientes y de alta calidad. Personaliza cada parte para obtener el rendimiento que necesitas.</p>
+                <div class="cta-buttons">
+                    <button class="cta-primary" onclick="navigateToCatalog()">Empezar a Construir</button>
+                    <button class="cta-secondary" onclick="scrollToSection('features')">Ver Componentes</button>
+                </div>
+            <div class="hero-image">
+                <div class="pc-image-placeholder">Imagen de PC de ejemplo</div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <h2>Componentes de Alta Calidad</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Procesadores Potentes</h3>
+                    <p>CPU de última generación de Intel y AMD para un rendimiento excepcional</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Tarjetas Gráficas de Vanguardia</h3>
+                    <p>GPU de alto rendimiento para gaming y creación de contenido</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Memoria y Almacenamiento</h3>
+                    <p>RAM de alta velocidad y SSDs rápidos para una experiencia fluida</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Cajas y Refrigeración</h3>
+                    <p>Diseños elegantes con soluciones de refrigeración eficientes</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <h2>Lo que dicen nuestros clientes</h2>
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <p>"Construí mi PC de gaming perfecta en menos de 30 minutos. ¡Increíblemente fácil de usar!"</p>
+                    <span class="client-name">- Carlos Mendoza</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"La herramienta me ayudó a elegir los componentes ideales para mi estación de trabajo. Ahorré mucho tiempo y dinero."</p>
+                    <span class="client-name">- Elena Rodríguez</span>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Finalmente una plataforma que entiende las necesidades de los entusiastas del hardware. ¡Recomendado al 100%!"</p>
+                    <span class="client-name">- David López</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <h2>¿Listo para construir tu PC perfecta?</h2>
+            <p>Empieza a diseñar tu sistema personalizado hoy mismo</p>
+            <button class="cta-primary" onclick="navigateToCatalog()">Construir Ahora</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="catalog.html">Catálogo de Componentes</a>
+            <a href="#">Guía de Compra</a>
+            <a href="#">Soporte Técnico</a>
+            <a href="#">Contacto</a>
+        </div>
+        <p>&copy; 2025 Constructor de PC. Todos los derechos reservados.</p>
+    </footer>
+
     <script src="js/script.js"></script>
+    <script>
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>

@@ -3,7 +3,7 @@ function navigateToLogin() {
 }
 
 function navigateToCatalog() {
-    window.location.href = 'catalog.html';
+    window.location.href = 'login.html';
 }
 
 document.getElementById('catalogForm').addEventListener('submit', function(event) {
