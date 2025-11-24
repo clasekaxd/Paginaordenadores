@@ -12,12 +12,47 @@
     </header>
     <main>
         <form action="storage.html" method="get">
-            <label for="ram">RAM:</label>
-            <select id="ram" name="ram">
-                <option value="16gb">16GB</option>
-                <option value="32gb">32GB</option>
-                <option value="64gb">64GB</option>
-            </select>
+            <div class="component-image-container">
+                <h3>Imagen del Componente</h3>
+                <div class="component-image-placeholder">Imagen de la RAM seleccionada</div>
+            </div>
+            
+            <div class="component-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Seleccionar</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Especificaciones Técnicas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="ram" value="16gb" required></td>
+                            <td>16GB DDR4</td>
+                            <td>Memoria RAM de 16GB con velocidad de 3200MHz</td>
+                            <td>€72</td>
+                            <td class="specs">16GB, DDR4, 3200MHz, CL16, dual channel</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="ram" value="32gb" required></td>
+                            <td>32GB DDR4</td>
+                            <td>Memoria RAM de 32GB con velocidad de 3200MHz</td>
+                            <td>€135</td>
+                            <td class="specs">32GB, DDR4, 3200MHz, CL16, dual channel</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="ram" value="64gb" required></td>
+                            <td>64GB DDR4</td>
+                            <td>Memoria RAM de 64GB con velocidad de 3200MHz</td>
+                            <td>€270</td>
+                            <td class="specs">64GB, DDR4, 3200MHz, CL16, dual channel</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <input type="hidden" name="cpu" value="">
             <input type="hidden" name="gpu" value="">
             <button type="submit">Siguiente</button>

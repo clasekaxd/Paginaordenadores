@@ -12,12 +12,47 @@
     </header>
     <main>
         <form action="case.html" method="get">
-            <label for="storage">Almacenamiento:</label>
-            <select id="storage" name="storage">
-                <option value="1tb-hdd">1TB HDD</option>
-                <option value="512gb-ssd">512GB SSD</option>
-                <option value="1tb-ssd">1TB SSD</option>
-            </select>
+            <div class="component-image-container">
+                <h3>Imagen del Componente</h3>
+                <div class="component-image-placeholder">Imagen del almacenamiento seleccionado</div>
+            </div>
+            
+            <div class="component-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Seleccionar</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Especificaciones Técnicas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="storage" value="1tb-hdd" required></td>
+                            <td>1TB HDD</td>
+                            <td>Disco duro mecánico de 1TB con 7200 RPM</td>
+                            <td>€45</td>
+                            <td class="specs">1TB, 7200 RPM, 64MB cache, 3.5"</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="storage" value="512gb-ssd" required></td>
+                            <td>512GB SSD</td>
+                            <td>Unidad de estado sólido de 512GB con interfaz SATA</td>
+                            <td>€63</td>
+                            <td class="specs">512GB, SATA III, 550MB/s lectura, 500MB/s escritura</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="storage" value="1tb-ssd" required></td>
+                            <td>1TB SSD</td>
+                            <td>Unidad de estado sólido de 1TB con interfaz SATA</td>
+                            <td>€108</td>
+                            <td class="specs">1TB, SATA III, 560MB/s lectura, 530MB/s escritura</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <input type="hidden" name="cpu" value="">
             <input type="hidden" name="gpu" value="">
             <input type="hidden" name="ram" value="">

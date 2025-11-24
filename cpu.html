@@ -12,13 +12,54 @@
     </header>
     <main>
         <form action="gpu.html" method="get">
-            <label for="cpu">CPU:</label>
-            <select id="cpu" name="cpu">
-                <option value="intel-i5">Intel i5</option>
-                <option value="intel-i7">Intel i7</option>
-                <option value="amd-ryzen5">AMD Ryzen 5</option>
-                <option value="amd-ryzen7">AMD Ryzen 7</option>
-            </select>
+            <div class="component-image-container">
+                <h3>Imagen del Componente</h3>
+                <div class="component-image-placeholder">Imagen de la CPU seleccionada</div>
+            </div>
+            
+            <div class="component-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Seleccionar</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Especificaciones Técnicas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="cpu" value="intel-i5" required></td>
+                            <td>Intel Core i5</td>
+                            <td>Procesador de gama media-alta con 6 núcleos y 12 hilos</td>
+                            <td>€180</td>
+                            <td class="specs">6 núcleos, 12 hilos, 3.6GHz base, 4.8GHz boost</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="cpu" value="intel-i7" required></td>
+                            <td>Intel Core i7</td>
+                            <td>Procesador de gama alta con 8 núcleos y 16 hilos</td>
+                            <td>€270</td>
+                            <td class="specs">8 núcleos, 16 hilos, 3.2GHz base, 5.0GHz boost</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="cpu" value="amd-ryzen5" required></td>
+                            <td>AMD Ryzen 5</td>
+                            <td>Procesador de gama media con 6 núcleos y 12 hilos</td>
+                            <td>€160</td>
+                            <td class="specs">6 núcleos, 12 hilos, 3.6GHz base, 4.2GHz boost</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="cpu" value="amd-ryzen7" required></td>
+                            <td>AMD Ryzen 7</td>
+                            <td>Procesador de gama alta con 8 núcleos y 16 hilos</td>
+                            <td>€225</td>
+                            <td class="specs">8 núcleos, 16 hilos, 3.2GHz base, 4.7GHz boost</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <button type="submit">Siguiente</button>
         </form>
     </main>

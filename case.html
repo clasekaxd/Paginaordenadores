@@ -12,12 +12,47 @@
     </header>
     <main>
         <form action="summary.html" method="get">
-            <label for="case">Caja:</label>
-            <select id="case" name="case">
-                <option value="mid-tower">Torre Media</option>
-                <option value="full-tower">Torre Completa</option>
-                <option value="mini-itx">Mini ITX</option>
-            </select>
+            <div class="component-image-container">
+                <h3>Imagen del Componente</h3>
+                <div class="component-image-placeholder">Imagen de la caja seleccionada</div>
+            </div>
+            
+            <div class="component-table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Seleccionar</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Especificaciones Técnicas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="radio" name="case" value="mid-tower" required></td>
+                            <td>Torre Media</td>
+                            <td>Caja de tamaño medio con buena ventilación</td>
+                            <td>€63</td>
+                            <td class="specs">ATX, 7 slots de expansión, 2x 140mm fans frontales</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="case" value="full-tower" required></td>
+                            <td>Torre Completa</td>
+                            <td>Caja de tamaño completo con espacio para componentes premium</td>
+                            <td>€90</td>
+                            <td class="specs">E-ATX, 9 slots de expansión, 3x 140mm fans frontales</td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" name="case" value="mini-itx" required></td>
+                            <td>Mini ITX</td>
+                            <td>Caja compacta para configuraciones pequeñas</td>
+                            <td>€45</td>
+                            <td class="specs">Mini ITX, 2 slots de expansión, 2x 120mm fans frontales</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <input type="hidden" name="cpu" value="">
             <input type="hidden" name="gpu" value="">
             <input type="hidden" name="ram" value="">
