@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar RAM</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Selecciona tu RAM</h1>
+    </header>
+    <main>
+        <form action="storage.html" method="get">
+            <label for="ram">RAM:</label>
+            <select id="ram" name="ram">
+                <option value="16gb">16GB</option>
+                <option value="32gb">32GB</option>
+                <option value="64gb">64GB</option>
+            </select>
+            <input type="hidden" name="cpu" value="">
+            <input type="hidden" name="gpu" value="">
+            <button type="submit">Siguiente</button>
+        </form>
+    </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.querySelector('input[name="cpu"]').value = params.get('cpu');
+        document.querySelector('input[name="gpu"]').value = params.get('gpu');
+    </script>
+</body>
+</html>

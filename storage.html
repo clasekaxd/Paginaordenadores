@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Almacenamiento</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Selecciona tu Almacenamiento</h1>
+    </header>
+    <main>
+        <form action="case.html" method="get">
+            <label for="storage">Almacenamiento:</label>
+            <select id="storage" name="storage">
+                <option value="1tb-hdd">1TB HDD</option>
+                <option value="512gb-ssd">512GB SSD</option>
+                <option value="1tb-ssd">1TB SSD</option>
+            </select>
+            <input type="hidden" name="cpu" value="">
+            <input type="hidden" name="gpu" value="">
+            <input type="hidden" name="ram" value="">
+            <button type="submit">Siguiente</button>
+        </form>
+    </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.querySelector('input[name="cpu"]').value = params.get('cpu');
+        document.querySelector('input[name="gpu"]').value = params.get('gpu');
+        document.querySelector('input[name="ram"]').value = params.get('ram');
+    </script>
+</body>
+</html>

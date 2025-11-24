@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Caja</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Selecciona tu Caja</h1>
+    </header>
+    <main>
+        <form action="summary.html" method="get">
+            <label for="case">Caja:</label>
+            <select id="case" name="case">
+                <option value="mid-tower">Torre Media</option>
+                <option value="full-tower">Torre Completa</option>
+                <option value="mini-itx">Mini ITX</option>
+            </select>
+            <input type="hidden" name="cpu" value="">
+            <input type="hidden" name="gpu" value="">
+            <input type="hidden" name="ram" value="">
+            <input type="hidden" name="storage" value="">
+            <button type="submit">Construir PC</button>
+        </form>
+    </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.querySelector('input[name="cpu"]').value = params.get('cpu');
+        document.querySelector('input[name="gpu"]').value = params.get('gpu');
+        document.querySelector('input[name="ram"]').value = params.get('ram');
+        document.querySelector('input[name="storage"]').value = params.get('storage');
+    </script>
+</body>
+</html>

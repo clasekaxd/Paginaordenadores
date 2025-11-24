@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Resumen</h1>
+    </header>
+    <main>
+        <div class="summary-container">
+            <h2>Tus Componentes Seleccionados</h2>
+            <ul class="summary-list">
+                <li><strong>CPU:</strong> <span id="cpu"></span></li>
+                <li><strong>GPU:</strong> <span id="gpu"></span></li>
+                <li><strong>RAM:</strong> <span id="ram"></span></li>
+                <li><strong>Almacenamiento:</strong> <span id="storage"></span></li>
+                <li><strong>Caja:</strong> <span id="case"></span></li>
+            </ul>
+            <p class="total-price"><strong>Precio Total:</strong> €<span id="totalPrice"></span></p>
+            <button class="buy-button">Comprar Ahora</button>
+        </div>
+    </main>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.querySelectorAll('input[type="hidden"]').forEach(input => {
+            input.value = params.get(input.name);
+        });
+
+        const prices = {
+            'intel-i5': 180,
+            'intel-i7': 270,
+            'amd-ryzen5': 160,
+            'amd-ryzen7': 225,
+            'nvidia-rtx3060': 360,
+            'nvidia-rtx3070': 450,
+            'amd-rx6700': 315,
+            'amd-rx6800': 405,
+            '16gb': 72,
+            '32gb': 135,
+            '64gb': 270,
+            '1tb-hdd': 45,
+            '512gb-ssd': 63,
+            '1tb-ssd': 108,
+            'mid-tower': 63,
+            'full-tower': 90,
+            'mini-itx': 45
+        };
+
+        let totalPrice = 0;
+
+        ['cpu', 'gpu', 'ram', 'storage', 'case'].forEach(component => {
+            const value = params.get(component);
+            document.getElementById(component).textContent = value;
+            totalPrice += prices[value] || 0;
+        });
+
+        document.getElementById('totalPrice').textContent = totalPrice;
+    </script>
+</body>
+</html>
