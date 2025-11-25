@@ -45,26 +45,62 @@
     <script type="module">
         import { prices } from './js/prices.js';
 
-        const params = new URLSearchParams(window.location.search);
+        const components = [
+            { id: 'cpu', name: 'CPU', required: true },
+            { id: 'gpu', name: 'GPU', required: true },
+            { id: 'ram', name: 'RAM', required: true },
+            { id: 'storage', name: 'Almacenamiento', required: true },
+            { id: 'case', name: 'Caja', required: true },
+            { id: 'keyboard', name: 'Teclado', required: false, price: 30 },
+            { id: 'mouse', name: 'Ratón', required: false, price: 20 },
+            { id: 'monitor', name: 'Pantalla', required: false, price: 150 }
+        ];
 
-        ['cpu', 'gpu', 'ram', 'storage', 'case'].forEach(component => {
-            const value = params.get(component);
-            document.getElementById(component).textContent = value;
+        const params = new URLSearchParams(window.location.search);
+        const summaryList = document.querySelector('.summary-list');
+        const totalPriceElement = document.getElementById('totalPrice');
+
+        let totalPrice = 0;
+
+        // Clear the summary list to avoid duplicates
+        summaryList.innerHTML = '';
+
+        components.forEach(component => {
+            const value = component.required ? params.get(component.id) : component.id;
+            const price = component.required ? prices[value] || 0 : component.price;
+
+            if (component.required || document.querySelector(`input[name="optional"][value="${component.id}"]`)?.checked) {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>${component.name}:</strong> ${value} - €${price}`;
+                summaryList.appendChild(listItem);
+            }
+
+            if (component.required) {
+                totalPrice += price;
+            }
         });
 
-        const basePrice = ['cpu', 'gpu', 'ram', 'storage', 'case']
-            .map(component => prices[params.get(component)] || 0)
-            .reduce((sum, price) => sum + price, 0);
-
-        const totalPriceElement = document.getElementById('totalPrice');
-        totalPriceElement.textContent = basePrice;
+        totalPriceElement.textContent = totalPrice;
 
         document.getElementById('updatePriceButton').addEventListener('click', () => {
-            const optionalPrices = Array.from(document.querySelectorAll('input[name="optional"]:checked'))
-                .map(input => parseFloat(input.dataset.price))
-                .reduce((sum, price) => sum + price, 0);
+            let updatedPrice = totalPrice; // Start with the base price of required components
 
-            totalPriceElement.textContent = basePrice + optionalPrices;
+            // Clear the summary list to recalculate
+            summaryList.innerHTML = '';
+
+            components.forEach(component => {
+                const value = component.required ? params.get(component.id) : component.id;
+                const price = component.required ? prices[value] || 0 : component.price;
+
+                if (component.required || document.querySelector(`input[name="optional"][value="${component.id}"]`)?.checked) {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>${component.name}:</strong> ${value} - €${price}`;
+                    summaryList.appendChild(listItem);
+                    updatedPrice += component.required ? 0 : price; // Add price only for optional components
+                }
+            });
+
+            totalPriceElement.textContent = updatedPrice;
         });
     </script>
 </body>

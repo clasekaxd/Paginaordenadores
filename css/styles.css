@@ -560,6 +560,50 @@ td.specs {
   margin-bottom: 0.5rem;
 }
 
+/* Optional Components Section */
+.optional-components {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: var(--container-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--border-color);
+}
+
+.optional-components h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.optional-components label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.optional-components input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+#updatePriceButton {
+  margin-top: 1rem;
+  background-color: var(--secondary-color);
+  color: var(--text-primary);
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+#updatePriceButton:hover {
+  background-color: var(--secondary-dark);
+  transform: translateY(-2px);
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
   header {
