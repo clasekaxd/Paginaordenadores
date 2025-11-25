@@ -24,6 +24,24 @@
             <button class="buy-button">Comprar Ahora</button>
         </div>
     </main>
+    <div class="optional-components">
+        <h3>Componentes Opcionales</h3>
+        <form id="optionalForm">
+            <label>
+                <input type="checkbox" name="optional" value="keyboard" data-price="30">
+                Teclado (€30)
+            </label><br>
+            <label>
+                <input type="checkbox" name="optional" value="mouse" data-price="20">
+                Ratón (€20)
+            </label><br>
+            <label>
+                <input type="checkbox" name="optional" value="monitor" data-price="150">
+                Pantalla (€150)
+            </label><br>
+            <button type="button" id="updatePriceButton">Actualizar Precio</button>
+        </form>
+    </div>
     <script type="module">
         import { prices } from './js/prices.js';
 
@@ -34,11 +52,20 @@
             document.getElementById(component).textContent = value;
         });
 
-        const totalPrice = ['cpu', 'gpu', 'ram', 'storage', 'case']
+        const basePrice = ['cpu', 'gpu', 'ram', 'storage', 'case']
             .map(component => prices[params.get(component)] || 0)
             .reduce((sum, price) => sum + price, 0);
 
-        document.getElementById('totalPrice').textContent = totalPrice;
+        const totalPriceElement = document.getElementById('totalPrice');
+        totalPriceElement.textContent = basePrice;
+
+        document.getElementById('updatePriceButton').addEventListener('click', () => {
+            const optionalPrices = Array.from(document.querySelectorAll('input[name="optional"]:checked'))
+                .map(input => parseFloat(input.dataset.price))
+                .reduce((sum, price) => sum + price, 0);
+
+            totalPriceElement.textContent = basePrice + optionalPrices;
+        });
     </script>
 </body>
 </html>
