@@ -65,8 +65,8 @@
         </form>
     </main>
     <script>
-        const cpuValue = new URLSearchParams(window.location.search).get('cpu');
-        document.querySelector('input[name="cpu"]').value = cpuValue;
+        const params = new URLSearchParams(window.location.search);
+        document.querySelector('input[name="cpu"]').value = params.get('cpu');
     </script>
 </body>
 </html>

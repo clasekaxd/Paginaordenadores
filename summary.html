@@ -14,11 +14,21 @@
         <div class="summary-container">
             <h2>Tus Componentes Seleccionados</h2>
             <ul class="summary-list">
-                <li><strong>CPU:</strong> <span id="cpu"></span></li>
-                <li><strong>GPU:</strong> <span id="gpu"></span></li>
-                <li><strong>RAM:</strong> <span id="ram"></span></li>
-                <li><strong>Almacenamiento:</strong> <span id="storage"></span></li>
-                <li><strong>Caja:</strong> <span id="case"></span></li>
+                <li data-component="cpu">
+                    <strong>CPU:</strong> <span class="component-value"></span> - <span class="component-price"></span>
+                </li>
+                <li data-component="gpu">
+                    <strong>GPU:</strong> <span class="component-value"></span> - <span class="component-price"></span>
+                </li>
+                <li data-component="ram">
+                    <strong>RAM:</strong> <span class="component-value"></span> - <span class="component-price"></span>
+                </li>
+                <li data-component="storage">
+                    <strong>Almacenamiento:</strong> <span class="component-value"></span> - <span class="component-price"></span>
+                </li>
+                <li data-component="case">
+                    <strong>Caja:</strong> <span class="component-value"></span> - <span class="component-price"></span>
+                </li>
             </ul>
             <p class="total-price"><strong>Precio Total:</strong> €<span id="totalPrice"></span></p>
             <button class="buy-button">Comprar Ahora</button>
@@ -38,69 +48,39 @@
             <label>
                 <input type="checkbox" name="optional" value="monitor" data-price="150">
                 Pantalla (€150)
-            </label><br>
-            <button type="button" id="updatePriceButton">Actualizar Precio</button>
+            </label>
         </form>
     </div>
     <script type="module">
         import { prices } from './js/prices.js';
 
-        const components = [
-            { id: 'cpu', name: 'CPU', required: true },
-            { id: 'gpu', name: 'GPU', required: true },
-            { id: 'ram', name: 'RAM', required: true },
-            { id: 'storage', name: 'Almacenamiento', required: true },
-            { id: 'case', name: 'Caja', required: true },
-            { id: 'keyboard', name: 'Teclado', required: false, price: 30 },
-            { id: 'mouse', name: 'Ratón', required: false, price: 20 },
-            { id: 'monitor', name: 'Pantalla', required: false, price: 150 }
-        ];
-
         const params = new URLSearchParams(window.location.search);
-        const summaryList = document.querySelector('.summary-list');
         const totalPriceElement = document.getElementById('totalPrice');
 
-        let totalPrice = 0;
+        // Pre-fill required components in the summary
+        document.querySelectorAll('[data-component]').forEach(item => {
+            const componentId = item.dataset.component;
+            const value = params.get(componentId);
+            const price = prices[value] || 0;
 
-        // Clear the summary list to avoid duplicates
-        summaryList.innerHTML = '';
-
-        components.forEach(component => {
-            const value = component.required ? params.get(component.id) : component.id;
-            const price = component.required ? prices[value] || 0 : component.price;
-
-            if (component.required || document.querySelector(`input[name="optional"][value="${component.id}"]`)?.checked) {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `<strong>${component.name}:</strong> ${value} - €${price}`;
-                summaryList.appendChild(listItem);
-            }
-
-            if (component.required) {
-                totalPrice += price;
-            }
+            item.querySelector('.component-value').textContent = value;
+            item.querySelector('.component-price').textContent = `€${price}`;
         });
+
+        // Calculate base price for required components
+        let totalPrice = Array.from(document.querySelectorAll('[data-component]'))
+            .map(item => prices[params.get(item.dataset.component)] || 0)
+            .reduce((sum, price) => sum + price, 0);
 
         totalPriceElement.textContent = totalPrice;
 
-        document.getElementById('updatePriceButton').addEventListener('click', () => {
-            let updatedPrice = totalPrice; // Start with the base price of required components
+        // Update price when optional components are selected
+        document.getElementById('optionalForm').addEventListener('change', () => {
+            const optionalPrice = Array.from(document.querySelectorAll('input[name="optional"]:checked'))
+                .map(input => parseFloat(input.dataset.price))
+                .reduce((sum, price) => sum + price, 0);
 
-            // Clear the summary list to recalculate
-            summaryList.innerHTML = '';
-
-            components.forEach(component => {
-                const value = component.required ? params.get(component.id) : component.id;
-                const price = component.required ? prices[value] || 0 : component.price;
-
-                if (component.required || document.querySelector(`input[name="optional"][value="${component.id}"]`)?.checked) {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `<strong>${component.name}:</strong> ${value} - €${price}`;
-                    summaryList.appendChild(listItem);
-                    updatedPrice += component.required ? 0 : price; // Add price only for optional components
-                }
-            });
-
-            totalPriceElement.textContent = updatedPrice;
+            totalPriceElement.textContent = totalPrice + optionalPrice;
         });
     </script>
 </body>
