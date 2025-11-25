@@ -24,39 +24,19 @@
             <button class="buy-button">Comprar Ahora</button>
         </div>
     </main>
-    <script>
+    <script type="module">
+        import { prices } from './js/prices.js';
+
         const params = new URLSearchParams(window.location.search);
-        document.querySelectorAll('input[type="hidden"]').forEach(input => {
-            input.value = params.get(input.name);
-        });
-
-        const prices = {
-            'intel-i5': 180,
-            'intel-i7': 270,
-            'amd-ryzen5': 160,
-            'amd-ryzen7': 225,
-            'nvidia-rtx3060': 360,
-            'nvidia-rtx3070': 450,
-            'amd-rx6700': 315,
-            'amd-rx6800': 405,
-            '16gb': 72,
-            '32gb': 135,
-            '64gb': 270,
-            '1tb-hdd': 45,
-            '512gb-ssd': 63,
-            '1tb-ssd': 108,
-            'mid-tower': 63,
-            'full-tower': 90,
-            'mini-itx': 45
-        };
-
-        let totalPrice = 0;
 
         ['cpu', 'gpu', 'ram', 'storage', 'case'].forEach(component => {
             const value = params.get(component);
             document.getElementById(component).textContent = value;
-            totalPrice += prices[value] || 0;
         });
+
+        const totalPrice = ['cpu', 'gpu', 'ram', 'storage', 'case']
+            .map(component => prices[params.get(component)] || 0)
+            .reduce((sum, price) => sum + price, 0);
 
         document.getElementById('totalPrice').textContent = totalPrice;
     </script>
